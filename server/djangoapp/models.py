@@ -1,8 +1,58 @@
 # Uncomment the following imports before adding the Model code
 
-# from django.db import models
-# from django.utils.timezone import now
-# from django.core.validators import MaxValueValidator, MinValueValidator
+from django.db import models
+from django.utils.timezone import now
+from django.core.validators import MaxValueValidator, MinValueValidator
+
+# Car Make Model
+class CarMake(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField(blank=True)
+
+    # Optional extra fields
+    country = models.CharField(max_length=100, blank=True)
+    founded_year = models.IntegerField(null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+
+
+# Car Model Model
+class CarModel(models.Model):
+
+    # Choices for car type
+    SEDAN = 'Sedan'
+    SUV = 'SUV'
+    WAGON = 'Wagon'
+    HATCHBACK = 'Hatchback'
+    COUPE = 'Coupe'
+
+    CAR_TYPE_CHOICES = [
+        (SEDAN, 'Sedan'),
+        (SUV, 'SUV'),
+        (WAGON, 'Wagon'),
+        (HATCHBACK, 'Hatchback'),
+        (COUPE, 'Coupe'),
+    ]
+
+    # Many-to-one relationship (one make → many models)
+    car_make = models.ForeignKey(
+        CarMake,
+        on_delete=models.CASCADE,
+        related_name='models'
+    )
+
+    dealer_id = models.IntegerField(null=True, blank=True)
+    name = models.CharField(max_length=100)
+    type = models.CharField(max_length=20, choices=CAR_TYPE_CHOICES)
+    year = models.IntegerField()
+
+    # Optional extra fields
+    price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    description = models.TextField(blank=True)
+
+    def __str__(self):
+        return f"{self.car_make.name} {self.name}"
 
 
 # Create your models here.
