@@ -2,6 +2,7 @@
 
 from django.db import models
 
+
 # Car Make Model
 class CarMake(models.Model):
     name = models.CharField(max_length=100)

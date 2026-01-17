@@ -1,9 +1,7 @@
-# Uncomment the required imports before adding the code
 import logging
 import json
 from django.contrib.auth.models import User
 from django.contrib.auth import logout, login, authenticate
-from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from .models import CarMake, CarModel
