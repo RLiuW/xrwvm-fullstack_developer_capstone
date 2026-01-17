@@ -1,8 +1,6 @@
 # Uncomment the following imports before adding the Model code
 
 from django.db import models
-# from django.utils.timezone import now
-# from django.core.validators import MaxValueValidator, MinValueValidator
 
 # Car Make Model
 class CarMake(models.Model):
@@ -19,7 +17,6 @@ class CarMake(models.Model):
 
 # Car Model Model
 class CarModel(models.Model):
-
     # Choices for car type
     SEDAN = 'Sedan'
     SUV = 'SUV'
@@ -49,8 +46,8 @@ class CarModel(models.Model):
 
     # Optional extra fields
     price = models.DecimalField(
-        max_digits=10, decimal_places=2, 
-        null=True, 
+        max_digits=10, decimal_places=2,
+        null=True,
         blank=True)
     description = models.TextField(blank=True)
 
